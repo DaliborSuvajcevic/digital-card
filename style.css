@@ -1,0 +1,297 @@
+:root {
+  --bg: #1a0f0c;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --text: rgba(255, 245, 230, 0.95);
+  --muted: rgba(255, 230, 210, 0.7);
+  --accent-gold: #D4AF37;
+}
+
+html, body {
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: -50%;
+  background:
+    radial-gradient(circle at 20% 30%, #ff7b6b, transparent 35%),
+    radial-gradient(circle at 75% 65%, #ffb86b, transparent 40%);
+  filter: blur(140px);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatBlobs 30s infinite alternate ease-in-out;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 48px 42px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px) rotateX(2deg) rotateY(2deg);
+  box-shadow:
+    0 50px 100px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.name {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -1px;
+  opacity: 0;
+  animation: slideIn 0.6s ease-out 0.2s forwards;
+}
+.name span {
+  display: block;
+  background: linear-gradient(120deg, #fff2cc, #ffd699, #fff2cc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* PULSIRAJUĆI TEKST "DIGITAL ENTREPRENEUR" */
+.role {
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: 
+    fadeIn 0.6s ease-out 0.4s forwards,
+    pulseRole 3s infinite 1.2s;
+}
+
+@keyframes pulseRole {
+  0%, 100% {
+    color: var(--muted);
+    transform: scale(1);
+    text-shadow: none;
+  }
+  50% {
+    color: var(--accent-gold);
+    transform: scale(1.08);
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  }
+}
+
+.divider {
+  margin: 32px 0 18px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #fff, transparent);
+  opacity: 0.2;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.5s forwards;
+}
+
+.accent-dot {
+  width: 6px;
+  height: 6px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  opacity: 0;
+  animation: pulseDot 2s infinite 0.6s;
+}
+
+.info {
+  display: grid;
+  gap: 20px;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.65s forwards;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInItem 0.5s forwards;
+}
+
+.item:nth-child(1) { animation-delay: 0.7s; }
+.item:nth-child(2) { animation-delay: 0.85s; }
+.item:nth-child(3) { animation-delay: 1s; }
+
+.item a {
+  position: relative;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.item a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-gold);
+  transition: width 0.3s ease;
+}
+.item a:hover {
+  color: var(--accent-gold);
+}
+.item a:hover::after {
+  width: 100%;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--accent-gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+  transition: 
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease;
+  flex-shrink: 0;
+}
+
+.item:hover .icon {
+  opacity: 1;
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
+}
+
+/* Instagram rotacija */
+.item:nth-child(3):hover .icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.email-copy {
+  cursor: pointer;
+  user-select: none;
+}
+.email-copy:hover {
+  color: var(--accent-gold);
+}
+
+.watermark {
+  position: absolute;
+  bottom: -30px;
+  right: -20px;
+  font-size: 130px;
+  font-weight: 900;
+  letter-spacing: -8px;
+  color: rgba(255, 255, 255, 0.035);
+  transform: rotate(-8deg);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: -1;
+  opacity: 0.6;
+  animation: pulseWatermark 8s infinite ease-in-out;
+}
+
+.color-splash {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at 30% 30%, #ff7b6b, #ffb86b 60%, transparent 70%);
+  opacity: 0.35;
+  filter: blur(60px);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: -1;
+}
+
+/* ANIMACIJE */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.5); opacity: 1; }
+}
+@keyframes fadeInItem {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulseWatermark {
+  0%, 100% {
+    transform: rotate(-8deg) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(-8deg) scale(1.03);
+    opacity: 0.7;
+  }
+}
+@keyframes floatBlobs {
+  from {
+    background-position: 0% 0%, 100% 100%;
+  }
+  to {
+    background-position: 100% 100%, 0% 0%;
+  }
+}
+
+/* MOBILNA PRILAGODBA */
+@media (max-width: 360px) {
+  .name { 
+    font-size: 40px; 
+  }
+  .watermark { 
+    font-size: 100px; 
+  }
+  .card { 
+    padding: 36px 24px; 
+    max-width: 340px; 
+  }
+  .icon {
+    width: 15px;
+    height: 15px;
+  }
+}

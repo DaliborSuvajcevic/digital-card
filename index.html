@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dalibor Suvajčević</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="card">
+    <div class="color-splash"></div>
+
+    <div class="name"><span>Dalibor</span><span>Suvajčević</span></div>
+    <div class="role">Digital ENTREPRENEUR</div>
+
+    <div class="divider"></div>
+    <div class="accent-dot"></div>
+
+    <div class="info">
+      <div class="item">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="email-copy" data-email="dsuvajcevic@icloud.com">dsuvajcevic@icloud.com</span>
+      </div>
+
+      <div class="item">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M5 16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3H5v3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 3v3M7 6l2 2M17 6l-2 2M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="4" r="1" fill="currentColor"/>
+        </svg>
+        <a href="https://goldencircle.com" target="_blank" rel="noopener">Golden Circle</a>
+      </div>
+
+      <div class="item">
+        <svg class="icon" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="6" ry="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="16.5" cy="7.5" r="1.5" fill="currentColor"/>
+        </svg>
+        <a href="https://www.instagram.com/onegoldenboyy/" target="_blank" rel="noopener">onegoldenboyy</a>
+      </div>
+    </div>
+
+    <div class="watermark">DS</div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.email-copy').forEach(el => {
+      el.addEventListener('click', () => {
+        const email = el.getAttribute('data-email');
+        navigator.clipboard.writeText(email).then(() => {
+          const originalText = el.textContent;
+          el.textContent = '✅ Copied!';
+          setTimeout(() => {
+            el.textContent = originalText;
+          }, 2000);
+        }).catch(() => {
+          alert('Email: dsuvajcevic@icloud.com');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
