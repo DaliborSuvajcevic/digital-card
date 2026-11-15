@@ -1,9 +1,9 @@
 :root {
-  --bg: #1a0f0c;
+  --bg: #0b0a08;
   --card-bg: rgba(255, 255, 255, 0.04);
   --text: rgba(255, 245, 230, 0.95);
   --muted: rgba(255, 230, 210, 0.7);
-  --accent-gold: #D4AF37;
+  --accent-gold: #FFB132;
 }
 
 html, body {
@@ -21,17 +21,17 @@ body {
   place-items: center;
   background: var(--bg);
   color: var(--text);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .bg {
-  position: absolute;
+  position: fixed;
   inset: -50%;
   background:
-    radial-gradient(circle at 20% 30%, #ff7b6b, transparent 35%),
-    radial-gradient(circle at 75% 65%, #ffb86b, transparent 40%);
+    radial-gradient(circle at 20% 30%, #FFB132, transparent 35%),
+    radial-gradient(circle at 75% 65%, #FFB132, transparent 40%);
   filter: blur(140px);
-  opacity: 0.25;
+  opacity: 0.12;
   pointer-events: none;
   z-index: 0;
   animation: floatBlobs 30s infinite alternate ease-in-out;
@@ -80,7 +80,7 @@ body {
   color: transparent;
 }
 
-/* PULSIRAJUĆI TEKST "DIGITAL ENTREPRENEUR" */
+/* DIGITAL ENTREPRENEUR */
 .role {
   margin-top: 12px;
   font-size: 13px;
@@ -88,22 +88,7 @@ body {
   text-transform: uppercase;
   color: var(--muted);
   opacity: 0;
-  animation: 
-    fadeIn 0.6s ease-out 0.4s forwards,
-    pulseRole 3s infinite 1.2s;
-}
-
-@keyframes pulseRole {
-  0%, 100% {
-    color: var(--muted);
-    transform: scale(1);
-    text-shadow: none;
-  }
-  50% {
-    color: var(--accent-gold);
-    transform: scale(1.08);
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-  }
+  animation: fadeIn 0.6s ease-out 0.4s forwards;
 }
 
 .divider {
@@ -146,6 +131,7 @@ body {
 .item:nth-child(1) { animation-delay: 0.7s; }
 .item:nth-child(2) { animation-delay: 0.85s; }
 .item:nth-child(3) { animation-delay: 1s; }
+.item:nth-child(4) { animation-delay: 1.15s; }
 
 .item a {
   position: relative;
@@ -189,11 +175,11 @@ body {
 .item:hover .icon {
   opacity: 1;
   transform: scale(1.15);
-  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
+  filter: drop-shadow(0 0 6px rgba(255, 177, 50, 0.4));
 }
 
 /* Instagram rotacija */
-.item:nth-child(3):hover .icon {
+.item:nth-child(4):hover .icon {
   transform: scale(1.15) rotate(5deg);
 }
 
@@ -205,20 +191,17 @@ body {
   color: var(--accent-gold);
 }
 
+/* Tihi zig: originalna kruna, bez izmena oblika i boje */
 .watermark {
   position: absolute;
-  bottom: -30px;
-  right: -20px;
-  font-size: 130px;
-  font-weight: 900;
-  letter-spacing: -8px;
-  color: rgba(255, 255, 255, 0.035);
-  transform: rotate(-8deg);
+  bottom: -40px;
+  right: -40px;
+  width: 230px;
+  height: auto;
+  opacity: 0.08;
   pointer-events: none;
-  mix-blend-mode: overlay;
+  user-select: none;
   z-index: -1;
-  opacity: 0.6;
-  animation: pulseWatermark 8s infinite ease-in-out;
 }
 
 .color-splash {
@@ -227,12 +210,34 @@ body {
   right: -60px;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle at 30% 30%, #ff7b6b, #ffb86b 60%, transparent 70%);
-  opacity: 0.35;
+  background: radial-gradient(circle at 30% 30%, #FFB132, #FFB132 60%, transparent 70%);
+  opacity: 0.2;
   filter: blur(60px);
   pointer-events: none;
   mix-blend-mode: screen;
   z-index: -1;
+}
+
+.save-contact {
+  display: block;
+  margin-top: 30px;
+  padding: 13px 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-gold);
+  border: 1px solid rgba(255, 177, 50, 0.5);
+  border-radius: 12px;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 1.3s forwards;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.save-contact:hover {
+  background: var(--accent-gold);
+  color: #0b0a08;
 }
 
 /* ANIMACIJE */
@@ -259,16 +264,6 @@ body {
     transform: translateY(0);
   }
 }
-@keyframes pulseWatermark {
-  0%, 100% {
-    transform: rotate(-8deg) scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: rotate(-8deg) scale(1.03);
-    opacity: 0.7;
-  }
-}
 @keyframes floatBlobs {
   from {
     background-position: 0% 0%, 100% 100%;
@@ -284,7 +279,7 @@ body {
     font-size: 40px; 
   }
   .watermark { 
-    font-size: 100px; 
+    width: 180px; 
   }
   .card { 
     padding: 36px 24px; 
