@@ -64,10 +64,11 @@ body {
 }
 
 .name {
+  font-family: "Playfair Display", Georgia, serif;
   font-size: 48px;
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -1px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0;
   opacity: 0;
   animation: slideIn 0.6s ease-out 0.2s forwards;
 }
