@@ -1,292 +1,32 @@
-:root {
-  --bg: #0b0a08;
-  --card-bg: rgba(255, 255, 255, 0.04);
-  --text: rgba(255, 245, 230, 0.95);
-  --muted: rgba(255, 230, 210, 0.7);
-  --accent-gold: #FFB132;
-}
+/* Fontovi: Playfair Display (naslovi) + Inter (tekst), prema brend kitu */
+@font-face{font-family:"Playfair Display";font-weight:500;font-display:swap;src:url(fonts/playfair-display-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Playfair Display";font-weight:500;font-display:swap;src:url(fonts/playfair-display-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Inter";font-weight:300;font-display:swap;src:url(fonts/inter-latin-300-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inter";font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inter";font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
-html, body {
-  height: 100%;
-}
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-}
-body {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-}
 
-.bg {
-  position: fixed;
-  inset: -50%;
-  background:
-    radial-gradient(circle at 20% 30%, #FFB132, transparent 35%),
-    radial-gradient(circle at 75% 65%, #FFB132, transparent 40%);
-  filter: blur(140px);
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-  animation: floatBlobs 30s infinite alternate ease-in-out;
-}
-
-.card {
-  position: relative;
-  width: 100%;
-  max-width: 440px;
-  padding: 48px 42px;
-  background: var(--card-bg);
-  border-radius: 20px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow:
-    0 40px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
-  overflow: hidden;
-  z-index: 1;
-  opacity: 0;
-  animation: fadeIn 0.8s ease-out forwards;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px) rotateX(2deg) rotateY(2deg);
-  box-shadow:
-    0 50px 100px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.name {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: 0;
-  opacity: 0;
-  animation: slideIn 0.6s ease-out 0.2s forwards;
-}
-.name span {
-  display: block;
-  background: linear-gradient(120deg, #fff2cc, #ffd699, #fff2cc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-/* DIGITAL ENTREPRENEUR */
-.role {
-  margin-top: 12px;
-  font-size: 13px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--muted);
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out 0.4s forwards;
-}
-
-.divider {
-  margin: 32px 0 18px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, #fff, transparent);
-  opacity: 0.2;
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out 0.5s forwards;
-}
-
-.accent-crown {
-  display: block;
-  width: 48px;
-  height: auto;
-  margin: -10px auto 8px;
-  opacity: 0;
-  animation: pulseDot 2s infinite 0.6s;
-}
-
-.info {
-  display: grid;
-  gap: 20px;
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out 0.65s forwards;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 14px;
-  color: var(--muted);
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInItem 0.5s forwards;
-}
-
-.item:nth-child(1) { animation-delay: 0.7s; }
-.item:nth-child(2) { animation-delay: 0.85s; }
-.item:nth-child(3) { animation-delay: 1s; }
-.item:nth-child(4) { animation-delay: 1.15s; }
-
-.item a {
-  position: relative;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.item a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent-gold);
-  transition: width 0.3s ease;
-}
-.item a:hover {
-  color: var(--accent-gold);
-}
-.item a:hover::after {
-  width: 100%;
-}
-
-.icon {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: var(--accent-gold);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.85;
-  transition: 
-    transform 0.3s ease,
-    opacity 0.3s ease,
-    filter 0.3s ease;
-  flex-shrink: 0;
-}
-
-.item:hover .icon {
-  opacity: 1;
-  transform: scale(1.15);
-  filter: drop-shadow(0 0 6px rgba(255, 177, 50, 0.4));
-}
-
-/* Instagram rotacija */
-.item:nth-child(4):hover .icon {
-  transform: scale(1.15) rotate(5deg);
-}
-
-.email-copy {
-  cursor: pointer;
-  user-select: none;
-}
-.email-copy:hover {
-  color: var(--accent-gold);
-}
-
-/* Tihi zig: originalna kruna, bez izmena oblika i boje */
-.watermark {
-  position: absolute;
-  bottom: -40px;
-  right: -40px;
-  width: 230px;
-  height: auto;
-  opacity: 0.08;
-  pointer-events: none;
-  user-select: none;
-  z-index: -1;
-}
-
-.color-splash {
-  position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle at 30% 30%, #FFB132, #FFB132 60%, transparent 70%);
-  opacity: 0.2;
-  filter: blur(60px);
-  pointer-events: none;
-  mix-blend-mode: screen;
-  z-index: -1;
-}
-
-.save-contact {
-  display: block;
-  margin-top: 30px;
-  padding: 13px 0;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--accent-gold);
-  border: 1px solid rgba(255, 177, 50, 0.5);
-  border-radius: 12px;
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out 1.3s forwards;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-.save-contact:hover {
-  background: var(--accent-gold);
-  color: #0b0a08;
-}
-
-/* ANIMACIJE */
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.5); opacity: 1; }
-}
-@keyframes fadeInItem {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes floatBlobs {
-  from {
-    background-position: 0% 0%, 100% 100%;
-  }
-  to {
-    background-position: 100% 100%, 0% 0%;
-  }
-}
-
-/* MOBILNA PRILAGODBA */
-@media (max-width: 360px) {
-  .name { 
-    font-size: 40px; 
-  }
-  .watermark { 
-    width: 180px; 
-  }
-  .card { 
-    padding: 36px 24px; 
-    max-width: 340px; 
-  }
-  .icon {
-    width: 15px;
-    height: 15px;
-  }
-}
+:root{--black:#111111;--gold:#FFB132;--cream:#F7F3EA;--muted:rgba(247,243,234,.55)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{min-height:100vh;background:var(--black);color:var(--cream);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;display:flex;justify-content:center}
+.card{width:100%;max-width:440px;padding:36px 28px 32px;display:flex;flex-direction:column;opacity:0;animation:fadeIn .8s ease-out forwards}
+.top{display:flex;align-items:center;gap:6px}
+.crown{width:56px;height:auto;margin-left:-8px}
+.brand{font-weight:600;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cream)}
+.hero{margin:72px 0 56px}
+.role{font-weight:300;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.name{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:56px;line-height:1.02;color:var(--cream)}
+.tag{margin-top:26px;font-weight:300;font-size:14px;line-height:1.5;color:var(--muted)}
+.links{border-top:1px solid rgba(247,243,234,.16)}
+.link{display:grid;grid-template-columns:92px 1fr auto;align-items:center;gap:8px;padding:18px 0;min-height:60px;border-bottom:1px solid rgba(247,243,234,.16);color:var(--cream);text-decoration:none;font-size:15px}
+.link span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.link em{font-style:normal}
+.link i{font-style:normal;color:var(--gold);transition:transform .25s ease}
+.link:hover i,.link:focus-visible i{transform:translateX(4px)}
+.link:focus-visible{outline:none}
+.save{margin-top:28px;display:block;padding:17px 0;text-align:center;border:1px solid var(--gold);border-radius:14px;color:var(--gold);text-decoration:none;font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;padding-left:.3em;transition:background .25s ease,color .25s ease}
+.save:hover{background:var(--gold);color:var(--black)}
+@keyframes fadeIn{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.card{animation:none;opacity:1}}
+@media (max-width:360px){.name{font-size:46px}.link{grid-template-columns:80px 1fr auto}}
