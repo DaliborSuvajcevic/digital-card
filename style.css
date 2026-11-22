@@ -9,6 +9,8 @@
 :root{--black:#111111;--gold:#FFB132;--cream:#F7F3EA;--muted:rgba(247,243,234,.55)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100%}
+html{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}
 body{min-height:100vh;background:var(--black);color:var(--cream);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;display:flex;justify-content:center}
 .card{width:100%;max-width:440px;padding:36px 28px 32px;display:flex;flex-direction:column;opacity:0;animation:fadeIn .8s ease-out forwards}
 .top{display:flex;align-items:center;gap:6px}
