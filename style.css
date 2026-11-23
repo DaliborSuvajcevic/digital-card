@@ -34,3 +34,6 @@ body{height:100vh;height:100dvh;overflow:hidden;background:var(--black);color:va
 @media (max-width:360px){.link{grid-template-columns:80px 1fr auto}}
 @media (max-height:600px){.tag{display:none}}
 @media (max-width:340px){.link{grid-template-columns:68px 1fr auto;font-size:14px}.link span{letter-spacing:.1em}}
+
+/* New official logo (Nov 2026) */
+.logo{display:block;height:clamp(28px,4.4vh,36px);width:auto;max-width:100%}
